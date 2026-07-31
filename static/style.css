@@ -173,19 +173,6 @@ border: 0;
 border-top: 1px solid #edf2f7;
 margin: 20px 0;
 }
-.profile-bio {
-font-size: 13.5px;
-color: #4a5568;
-line-height: 1.6;
-text-align: justify;
-margin: 15px 0;
-}
-
-.profile-divisor {
-border: 0;
-border-top: 1px solid #edf2f7;
-margin: 20px 0;
-}
 
 /* Seção de Skills */
 .skills-section {
@@ -373,6 +360,11 @@ transition: all 0.3s ease;
 .input-group input:focus {
 border-color: #25d366;
 box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.15);
+}
+/* Feedback visual para campos inválidos (casado com o pattern do HTML) */
+.input-group input:focus:invalid {
+    border-color: #e53e3e;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.15);
 }
 
 /* Grid de Serviços */
@@ -677,21 +669,21 @@ MEDIA QUERIES (RESPONSIVIDADE)
 ========================================== */
 @media (max-width: 868px) {
     .portfolio-wrapper {
-    grid-template-columns: 1fr;
-    padding: 10px;
+        grid-template-columns: 1fr;
+        padding: 10px;
     }
 
     .sidebar-profile {
         width: 100%;
     }
 
+    /* Centraliza o comportamento de todos os formulários flex do site no mobile */
     .interactive-form {
         flex-direction: column;
     }
 
-    .btn-whatsapp {
+    .btn-whatsapp,
+    .btn-etl {
         width: 100%;
     }
-
-
 }
