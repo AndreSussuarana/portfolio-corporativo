@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Restrito - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Painel de Controle</h1>
+        <p>Área restrita. Introduza a palavra-passe de administrador:</p>
+
+        {% if erro %}
+            <p style="color: #ff4d4d; font-weight: bold; margin-top: 10px;">{{ erro }}</p>
+        {% endif %}
+
+        <form action="/login" method="POST">
+            <input type="password" name="senha" placeholder="Palavra-passe" required>
+            <button type="submit" class="btn">Entrar no Painel</button>
+        </form>
+
+        <a href="/" class="btn-github" style="display: inline-block; padding: 10px 20px; border-radius: 5px; margin-top: 15px;">Voltar à Home</a>
+    </div>
+</body>
+</html>

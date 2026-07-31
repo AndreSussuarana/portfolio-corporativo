@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio/Sussuarana TECHSolutions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="portfolio-wrapper">
+        <!-- LADO ESQUERDO: Apresentação Pessoal e Perfil -->
+        <aside class="sidebar-profile">
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <span class="avatar-text">AS</span>
+                    <span class="status-indicator"></span>
+                </div>
+                <h1 class="profile-name">Sussu TECH</h1>
+                <p class="profile-tagline">Dev Júnior Fullstack Python.</p>
+                
+                <!-- Links Sociais Rápidos -->
+                <div class="social-links">
+                    <a href="https://github.com/teu-usuario" target="_blank" title="GitHub" class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                    <a href="https://linkedin.com/in/teu-linkedin" target="_blank" title="LinkedIn" class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="mailto:teu-email@provedor.com" title="E-mail de Contato" class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </a>
+                </div>
+                
+                <div class="cv-download-container">
+                    <a href="/download_cv" class="btn btn-cv">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        <span>Baixar Currículo(.pdf)</span>
+                    </a>
+                </div>
+                <p class="profile-bio">
+                    Acadêmico de Engenharia da Computação e Direito, atuo no desenvolvimento de sistemas sob medida e na automação inteligente de processos. Minha especialidade é transformar fluxos de trabalho manuais — como a manipulação exaustiva de planilhas e relatórios — em aplicações web e desktop rápidas, integradas a bancos de dados robustos. Unindo a lógica da engenharia à estruturação de processos, projeto soluções eficientes que eliminam o retrabalho e aceleram a tomada de decisões corporativas.
+                </p>
+                
+                <hr class="profile-divisor">
+
+                <!-- Habilidades categorizadas -->
+                <div class="skills-section">
+                    <h3>Minhas Tecnologias</h3>
+                    <div class="skills-group">
+                        <div class="skill-category">Backend & Bancos</div>
+                        <div class="skills-tags">
+                            <span class="skill-badge tech-python" data-tech="Python" data-desc="Excelente para automação de processos, processamento de grandes volumes de dados e inteligência de lógica de backend corporativo.">Python</span>
+                            <span class="skill-badge tech-csharp" data-tech="C# (Csharp)" data-desc="Linguagem robusta da Microsoft, ideal para construir APIs estruturadas, serviços seguros e sistemas de altíssima performance.">C# (Csharp)</span>
+                            <span class="skill-badge tech-flask" data-tech="Flask" data-desc="Microframework web ágil em Python. Perfeito para estruturar rotas de APIs limpas e gerir bases de dados sem overhead (congestionamento de dados).">Flask</span>
+                            <span class="skill-badge tech-sqlite" data-tech="SQLite" data-desc="Base de dados de baixo custo operacional e alta velocidade de organização de dados. Perfeita para persistir registros com segurança e rapidez local total.">SQLite</span>
+                        </div>
+                    </div>
+                    <div class="skills-group">
+                        <div class="skill-category">Interface & Automações</div>
+                        <div class="skills-tags">
+                            <span class="skill-badge tech-streamlit" data-tech="Streamlit" data-desc="Extretamente útil e simples para transformar dados brutos em dashboards e interface interativa. Perfeita para análise de dados em setores corporativos.">Streamlit</span>
+                            <span class="skill-badge tech-excel" data-tech="Openpyxl" data-desc="Manipulação automatizada de ficheiros Excel. Lê, calcula e gera relatórios de planilhas de forma 100% autônoma e livre de erros.">Openpyxl</span>
+                            <span class="skill-badge tech-html" data-tech="HTML5" data-desc="Estrutura semântica fundamental para organizar e apresentar o conteúdo web de forma acessível e otimizada (SEO).">HTML5</span>
+                            <span class="skill-badge tech-css" data-tech="CSS3" data-desc="Garante o alinhamento visual refinado, esquemas de cores modernos, sombras, animações de transição e responsividade.">CSS3</span>
+                            <span class="skill-badge tech-git" data-tech="Git" data-desc="Controle de versões essencial que garante rastreamento seguro de código, colaboração profissional e histórico de backups.">Git</span>
+                        </div>
+                    </div>
+
+                    <!-- Caixa de Utilidade Prática Dinâmica -->
+                    <div id="tech-info-box" class="tech-info-box">
+                        <p class="tech-info-placeholder">💡 Clica em qualquer tecnologia para ver a sua utilidade real.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- LADO DIREITO: Cartões de Ação Dinâmicos -->
+        <main class="content-actions">
+            <!-- Card 1: Fale Comigo (WhatsApp) -->
+            <section class="action-card contact-card">
+                <div class="card-header">
+                    <span class="icon-wrapper green-glow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    </span>
+                    <h2>Contato Imediato</h2>
+                </div>
+                <p>Insira seu nome abaixo para abrir uma conversa profissional diretamente no meu WhatsApp corporativo.</p>
+                
+                <form action="/enviar" method="POST" class="interactive-form">
+                    <div class="input-group">
+                        <input type="text" name="nome_usuario" placeholder="Qual é o seu nome?" pattern="^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$" title="O nome deve conter apenas letras e espaços." required>
+                    </div>
+                    <button type="submit" class="btn btn-whatsapp">
+                        <span>Iniciar Conversa via WhatsApp</span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- NOVO CARD: Serviços & Especialidades -->
+            <section class="action-card services-card">
+                <div class="card-header">
+                    <span class="icon-wrapper blue-glow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </span>
+                    <h2>Serviços & Especialidades</h2>
+                </div>
+                <p>Desenvolvo soluções sob medida focadas em produtividade, automação de processos e inteligência de dados:</p>
+                
+                <div class="services-grid">
+                    <div class="service-item">
+                        <div class="service-title">
+                            <span class="service-bullet tech-python"></span>
+                            <strong>Automação & Manipulação de Dados</strong>
+                        </div>
+                        <p>Eliminação de processos manuais repetitivos com scripts Python. Leitura, tratamento e escrita automatizada de relatórios em Excel com Openpyxl.</p>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-title">
+                            <span class="service-bullet tech-streamlit"></span>
+                            <strong>Dashboards & Painéis Analíticos</strong>
+                        </div>
+                        <p>Desenvolvimento de interfaces interativas e dinâmicas com Streamlit para visualização e predição analítica de métricas de negócios em tempo real.</p>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-title">
+                            <span class="service-bullet tech-csharp"></span>
+                            <strong>Sistemas Backend & APIs</strong>
+                        </div>
+                        <p>Construção de lógicas de negócio sólidas e seguras com Flask (Python) e C#, conectando eficientemente interfaces a bases de dados SQLite, por meio de sistemas de tecnologias integrados.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Card 2: Destaques Tecnológicos (Projetos do Portfólio) -->
+            <section class="action-card projects-showcase-card">
+                <div class="card-header">
+                    <span class="icon-wrapper dark-glow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </span>
+                    <h2>Arquitetura do Site</h2>
+                </div>
+                <p>Este portfólio não é apenas uma página estática! Conheça as engrenagens ativas rodando por trás dele:</p>
+                
+                <ul class="engine-list">
+                    <li>
+                        <strong>Engine Backend Flask:</strong> Roteamento dinâmico e tratamento estruturado de dados em Python.
+                    </li>
+                    <li>
+                        <strong>Banco de Dados Ativo:</strong> Persistência real em SQLite monitorando acessos via comandos SQL diretos.
+                    </li>
+                    <li>
+                        <strong>Segurança com Criptografia:</strong> Rota de relatórios trancada por barreira de sessão encriptada.
+                    </li>
+                </ul>
+            </section>
+            <!-- NOVO CARD: Área do Engenheiro de Dados (Pipeline ETL) -->
+            <section class="action-card etl-card">
+                <div class="card-header">
+                    <span class="icon-wrapper purple-glow">
+                        <!-- Ícone de Banco de Dados / Upload -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5"></path><path d="M3 12v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"></path><path d="M12 19V11"></path><path d="M9 14l3-3 3 3"></path></svg>
+                    </span>
+                    <h2>Demonstração de Pipeline ETL</h2>
+                </div>
+                <p>Ative o motor de dados do backend! Suba um arquivo no formato <strong>.csv</strong> para processar, limpar e persistir os dados no SQLite automaticamente.</p>
+    
+                <!-- Formulário preparado para envio de arquivos físicos (enctype necessário) -->
+                <form action="/api/upload_etl" method="POST" enctype="multipart/form-data" class="interactive-form">
+                    <div class="input-group">
+                        <input type="file" name="planilha" accept=".csv" required class="file-input">
+                    </div>
+                    <button type="submit" class="btn btn-etl">
+                        <span>Disparar Carga no Banco (.db)</span>
+                    </button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script para controle interativo de cliques de tecnologias -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const badges = document.querySelectorAll(".skill-badge");
+            const infoBox = document.getElementById("tech-info-box");
+
+            badges.forEach(badge => {
+                badge.style.cursor = "pointer";
+                badge.addEventListener("click", function() {
+                    // Remove estado ativo de todos os badges
+                    badges.forEach(b => b.classList.remove("active-badge"));
+                    
+                    // Ativa o badge clicado
+                    this.classList.add("active-badge");
+
+                    const techName = this.getAttribute("data-tech");
+                    const techDesc = this.getAttribute("data-desc");
+
+                    // Efeito suave de transição (Fade Out -> Fade In)
+                    infoBox.style.opacity = "0";
+                    infoBox.style.transform = "translateY(3px)";
+                    
+                    setTimeout(() => {
+                        infoBox.innerHTML = `
+                            <strong style="color: #1a202c; display: block; margin-bottom: 4px; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.5px;">${techName}</strong>
+                            <p style="margin: 0; font-size: 12.5px; color: #4a5568; line-height: 1.5;">${techDesc}</p>
+                        `;
+                        infoBox.style.opacity = "1";
+                        infoBox.style.transform = "translateY(0)";
+                    }, 150);
+                });
+            });
+        });
+        /* ==========================================
+            INTERATIVIDADE DO PIPELINE DE ETL (UPLOAD)
+        ========================================== */
+        document.addEventListener('DOMContentLoaded', () => {
+            const etlForm = document.querySelector('.etl-card form');
+            const etlBtn = document.querySelector('.btn-etl');
+
+            if (etlForm) {
+                etlForm.addEventListener('submit', async (e) => {
+                    // 1. Evita que a página recarregue ao submeter o formulário
+                    e.preventDefault(); 
+            
+                    // 2. Cria um container de dados no formato que o backend espera (Multipart)
+                    const formData = new FormData(etlForm);
+            
+                    // 3. Feedback visual: desabilita o botão e muda o texto enquanto processa
+                    const originalBtnText = etlBtn.innerHTML;
+                    etlBtn.disabled = true;
+                    etlBtn.innerHTML = '<span>Processando Pipeline...</span>';
+
+                    try {
+                        // 4. Dispara a requisição assíncrona para a rota do Flask
+                        const response = await fetch('/api/upload_etl', {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        const resultado = await response.json();
+
+                        if (response.ok) {
+                            // Verifica se o backend mandou um aviso ou sucesso real
+                            if (resultado.status === 'aviso') {
+                                alert(`⚠️ ${resultado.mensagem}`);
+                            } else {
+                                // Sucesso! Limpa o formulário e joga o usuário direto para o Streamlit
+                                etlForm.reset(); 
+                                window.location.href = resultado.url_redirect;
+                            }
+                        } else {
+                            // O backend encontrou algum erro de validação (ex: colunas erradas)
+                            alert(`⚠️ Erro no processo: ${resultado.mensagem || 'Falha ao processar arquivo.'}`);
+                        }
+
+                    } catch (error) {
+                        // Erro de conexão ou servidor fora do ar
+                        alert('❌ Erro crítico: Não foi possível se conectar ao motor de ETL no backend.');
+                        console.error('Erro no upload:', error);
+                    } finally {
+                        // 5. Restaura o botão ao estado original independente do resultado
+                        etlBtn.disabled = false;
+                        etlBtn.innerHTML = originalBtnText;
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

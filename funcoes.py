@@ -1,46 +1,40 @@
-import streamlit as st
 import pandas as pd
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+from pandas import DataFrame
 
-def conectar_google():
+def processar_e_tipar_colunas(df: DataFrame) -> DataFrame:
     """
-    Função auxiliar para autenticar tanto localmente quanto na nuvem.
+    Analisa as colunas de um DataFrame dinâmico e converte 
+    automaticamente textos que contêm números para o tipo numérico correto.
     """
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    df_copia = df.copy()
     
-    # 1. Tenta carregar dos Secrets do Streamlit (Modo Nuvem)
-    if "gcp_service_account" in st.secrets:
-        creds_dict = st.secrets["gcp_service_account"]
-        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
-    # 2. Se não achar, carrega o arquivo local (Modo Desenvolvimento)
+    for col in df_copia.columns:
+        # Tenta converter a coluna para número (int ou float)
+        col_convertida = pd.to_numeric(df_copia[col], errors='coerce')
+        
+        # Se a coluna inteira não virou NaN, atualiza o DataFrame com o tipo correto
+        if not col_convertida.isna().all():
+            df_copia[col] = col_convertida
+            
+    return df_copia
+
+def calcular_kpis_dinamicos(df: DataFrame) -> tuple[int, float, float]:
+    """
+    Calcula as métricas do painel com base na primeira coluna numérica encontrada.
+    Retorna uma tupla contendo: (total_linhas, soma_total, media_total)
+    """
+    total_linhas = len(df)
+    
+    # Filtra apenas as colunas que possuem tipo numérico (float ou int)
+    colunas_numericas = df.select_dtypes(include=['number']).columns
+    
+    if len(colunas_numericas) > 0 and total_linhas > 0:
+        col_alvo = colunas_numericas[0]
+        # .fillna(0) garante que linhas em branco na planilha não quebrem a soma
+        soma_total = float(df[col_alvo].fillna(0).sum())
+        media_total = float(df[col_alvo].fillna(0).mean())
     else:
-        creds = ServiceAccountCredentials.from_json_keyfile_name("chave_google.json", scope)
-    
-    return gspread.authorize(creds)
-
-def salvar_no_google_sheets(dados_novos, nome_aba):
-    client = conectar_google()
-    planilha = client.open_by_key("1OTbG6-9Mgobeep-F_bwn-X5rDuEckVsjB20VCu6D6kg")
-    sheet = planilha.worksheet(nome_aba)
-
-    df_novo = pd.DataFrame(dados_novos)
-    colunas_ajuste = ["NOME DA EMPRESA", "", "TIPO DE MATERIAL", "TIPO DE SERVIÇO"]
-    for col in colunas_ajuste.columns:
-        if col in df_novo.columns:
-            df_novo[col] = df_novo[col].astype(str).str.upper().str.strip()
-    
-    novas_linhas = df_novo.values.tolist()
-    sheet.append_rows(novas_linhas)
-    return True
-
-def carregar_dados_google(nome_aba):
-    try:
-        client = conectar_google()
-        planilha = client.open_by_key("1OTbG6-9Mgobeep-F_bwn-X5rDuEckVsjB20VCu6D6kg")
-        sheet = planilha.worksheet(nome_aba)
-        dados = sheet.get_all_records()
-        return pd.DataFrame(dados)
-    except Exception as e:
-        st.error(f"Erro na conexão: {e}")
-        return None
+        soma_total = 0.0
+        media_total = 0.0
+        
+    return total_linhas, soma_total, media_total

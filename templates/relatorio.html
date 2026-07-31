@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Acessos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container container-relatorio">
+        <h1>Histórico de Cliques</h1>
+        <p>Abaixo estão os dados registrados no seu database (banco de dados)</p>
+
+        <table class="tabela-dados">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Cliente</th>
+                    <th>Data e Hora do Clique</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for acesso in acessos %}
+                <tr>
+                    <td>{{ acesso[0] }}</td>
+                    <td>{{ acesso[1] }}</td>
+                    <td>{{ acesso[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/" class="btn btn-voltar">Voltar para a Home</a>
+    </div>
+</body>
+</html>
