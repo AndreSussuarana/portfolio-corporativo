@@ -91,7 +91,7 @@ def download_cv():
     gerenciador.registrar_download_cv()
 
     diretorio_estatico = os.path.join(app.root_path, 'static')
-    nome_arquivo = 'cv.pdf'
+    nome_arquivo = 'Curriculo_Andre_Sussuarana.pdf'
     caminho_completo = os.path.join(diretorio_estatico, nome_arquivo)
 
     if not os.path.exists(caminho_completo):
