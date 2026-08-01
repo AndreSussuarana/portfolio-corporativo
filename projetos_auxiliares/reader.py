@@ -32,6 +32,7 @@ class ProcessadorETL:
             return dados_limpos
 
         for index, linha_original in enumerate(dados_brutos):
+            print(f"--- LINHA BRUTA {index}: {linha_original}")
             try:
                 # 1. Padronização estrita de chaves (ignora chaves nulas ou vazias)
                 linha = {
