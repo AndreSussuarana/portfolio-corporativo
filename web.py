@@ -154,7 +154,7 @@ def upload_etl():
                 "status": "sucesso",
                 "arquivo": nome_ficheiro,
                 "linhas": len(dados_limpos),
-                "url_redirect": "http://localhost:8501"
+                "url_redirect": "https://sussutech-dashboard.streamlit.app/"
             }), 200
         else:
             return jsonify({
