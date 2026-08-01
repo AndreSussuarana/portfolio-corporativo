@@ -1,0 +1,9 @@
+ID_Pedido,Data,Produto,Categoria,Quantidade,Valor_Unitario,Canal_Venda
+1001,2026-07-01,Notebook Pro,Hardware,2,4500.00,Website
+1002,2026-07-02,Licença Antivírus,Software,5,120.00,Loja Física
+1003,2026-07-02,Mouse Sem Fio,Periféricos,10,85.00,Marketplace
+1004,2026-07-03,Monitor 29" UltraWide,Hardware,1,1800.00,Website
+1005,2026-07-04,Curso Python Web,Treinamento,3,250.00,Website
+1006,2026-07-05,Teclado Mecânico,Periféricos,4,350.00,Marketplace
+1007,2026-07-06,Assinatura Nuvem 1TB,Software,1,599.00,Loja Física
+1008,2026-07-07,Headset Gamer,Periféricos,2,400.00,Marketplace
