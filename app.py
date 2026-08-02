@@ -64,13 +64,18 @@ if not ARQUIVO_BANCO.exists():
 # --- BARRA LATERAL: CONFIGURAÇÃO E FILTROS ---
 st.sidebar.header("⚙️ Configuração Estrutural")
 
-if ARQUIVO_BANCO.exists():
-    df_bruto_local = pd.read_csv(ARQUIVO_BANCO)
-    # Roda a sua função para garantir que números não sejam lidos como texto
+df_bruto_local = pd.DataFrame()
+try:
+    df_bruto_local = pd.read_sql("SELECT * FROM vendas LIMIT 10", con=engine)
+    banco_ativo = not df_bruto_local.empty
+except Exception:
+    banco_ativo = False
+
+if banco_ativo:
     df_existente = processar_e_tipar_colunas(df_bruto_local)
     df_existente.columns = [str(c).upper().strip() for c in df_existente.columns]
     colunas = list(df_existente.columns)
-    st.sidebar.success("🔒 **Estrutura de Dados Ativa**")
+    st.sidebar.success("🔒 **Estrutura de Dados Ativa (Supabase)**")
     
     # --- 1. FILTROS DINÂMICOS NA LATERAL ---
     st.sidebar.markdown("---")
@@ -159,19 +164,19 @@ with tab_dados:
         else:
             st.warning("Defina as colunas na barra lateral para liberar o formulário.")
 
-    if ARQUIVO_BANCO.exists():
-        st.markdown("---")
-        st.subheader("📋 Planilha Interativa (Excel In-App)")
-        
-        df_dados_brutos = pd.read_csv(ARQUIVO_BANCO)
-        df_editado = st.data_editor(df_dados_brutos, use_container_width=True, num_rows="dynamic", key="planilha_interativa")
-        
-        if not df_editado.equals(df_dados_brutos):
-            df_editado.to_csv(ARQUIVO_BANCO, index=False)
-            st.toast("🔄 Alterações na planilha salvas automaticamente!", icon="💾")
-            st.rerun()
+    df_dados_brutos = pd.DataFrame()
+    try:
+        df_dados_brutos = pd.read_sql("SELECT * FROM vendas", con=engine)
+        tem_registros = not df_dados_brutos.empty
+    except Exception:
+        tem_registros = False
 
-        csv_para_download = df_editado.to_csv(index=False).encode('utf-8')
+    if tem_registros:
+        st.markdown("---")
+        st.subheader("📋 Planilha Interativa (Dados na Nuvem)")
+        st.dataframe(df_dados_brutos, use_container_width=True)
+
+        csv_para_download = df_dados_brutos.to_csv(index=False).encode('utf-8')
         st.download_button(
             label="📥 Exportar para Excel (.csv)",
             data=csv_para_download,
@@ -182,17 +187,26 @@ with tab_dados:
 # --- ABA 2: DASHBOARD INTERATIVO ---
 with tab_dash:
     st.subheader("📈 Análise de Indicadores")
+    df_dados_sql = pd.DataFrame()
+    try:
+        df_dados_sql = pd.read_sql("SELECT * FROM vendas", con=engine)
+        dash_pronto = not df_dados_sql.empty
+    except Exception:
+        dash_pronto = False
     
-    if ARQUIVO_BANCO.exists():
-        df_dados_brutos = pd.read_csv(ARQUIVO_BANCO)
-        df_dados_completos = processar_e_tipar_colunas(df_dados_brutos)
+    if dash_pronto:
+        # Garante padronização em maiúsculo para evitar incompatibilidade nas métricas
+        df_dados_sql.columns = [str(c).upper().strip() for c in df_dados_sql.columns]
+        df_dados_completos = processar_e_tipar_colunas(df_dados_sql)
         
+        # --- AQUI: CRIAÇÃO DA VARIÁVEL CORRETA BASEADA NO FILTRO LATERAL ---
         if filtro_ativo and coluna_filtro:
             df_visualizacao = df_dados_completos[df_dados_completos[coluna_filtro] == opcao_selecionada]
             st.caption(f"🎯 Mostrando dados filtrados por: **{opcao_selecionada}**")
         else:
             df_visualizacao = df_dados_completos
             
+        # Agora sim! df_visualizacao existe e pode ser computada com segurança
         total_linhas, soma_total, media_total = calcular_kpis_dinamicos(df_visualizacao)
         
         c1, c2, c3 = st.columns(3)
@@ -239,16 +253,14 @@ with tab_dash:
                         texto_formatado = f"**R$ {valor_campeao:,.2f}**"
         
                 st.success(f"💡 **Insight de Negócio:** O maior acumulado de `{col_y.title()}` pertence a **{item_campeao}**, totalizando {texto_formatado}!")
-                # Criamos duas coluninhas menores para os botões de ação ficarem alinhados
+                
                 col_btn_1, col_btn_2 = st.columns([2, 1])
                 
                 with col_btn_1:
-                    # 2. Tabela Oculta/Expansível para auditoria
                     with st.expander("🔍 Rastreabilidade: Ver Linhas Deste Recorte"):
                         st.dataframe(df_visualizacao, use_container_width=True)
                         
                 with col_btn_2:
-                    # 3. Botão para exportar o filtro atual
                     csv_filtrado = df_visualizacao.to_csv(index=False).encode('utf-8')
                     st.download_button(
                         label="📥 Baixar Filtro Atual",
@@ -261,7 +273,6 @@ with tab_dash:
                 st.markdown("### 🧮 Matriz de Cruzamento Comercial (Mapa de Calor)")
                 st.caption("Entenda o cruzamento de duas categorias de texto baseadas na métrica selecionada.")
 
-                # Pegamos todas as colunas de texto disponíveis para os seletores da matriz
                 opcoes_matriz = [c for c in df_visualizacao.columns if c not in colunas_numericas]
 
                 if len(opcoes_matriz) >= 2:
@@ -269,12 +280,10 @@ with tab_dash:
                     with c_matriz_1:
                         eixo_linhas = st.selectbox("Linhas da Matriz:", opcoes_matriz, index=0, key="matriz_linhas")
                     with c_matriz_2:
-                        # Garante que o segundo seletor comece com uma opção diferente se houver
                         index_padrao = 1 if len(opcoes_matriz) > 1 else 0
                         eixo_colunas = st.selectbox("Colunas da Matriz:", opcoes_matriz, index=index_padrao, key="matriz_colunas")
 
                     if eixo_linhas != eixo_colunas:
-                        # 1. Cria a Tabela Dinâmica somando a métrica escolhida no painel lateral (col_y)
                         df_pivot = df_visualizacao.pivot_table(
                             index=eixo_linhas,
                             columns=eixo_colunas,
@@ -283,10 +292,7 @@ with tab_dash:
                             fill_value=0
                         )
 
-                        # 2. Aplica a estilização de gradiente do Pandas (Cor 'Blues' ou 'Greens')
                         df_estilizado = df_pivot.style.background_gradient(cmap='Blues', axis=None)
-
-                        # 3. Exibe no Streamlit mantendo a interatividade
                         st.dataframe(df_estilizado.format("{:.2f}"), use_container_width=True)
                     else:
                         st.warning("⚠️ Selecione categorias diferentes para as linhas e colunas para cruzar os dados.")
@@ -298,7 +304,6 @@ with tab_dash:
             st.info("💡 Insira ou importe colunas numéricas para habilitar os gráficos e cálculos.")
     else:
         st.info("✨ O Dashboard será gerado automaticamente aqui assim que o primeiro registro for salvo na primeira aba.")
-
 # --- ABA 3: CENTRAL DE FEEDBACK ---
 with tab_feedback:
     st.subheader("💬 Sua opinião é fundamental!")
