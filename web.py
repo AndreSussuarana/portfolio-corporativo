@@ -6,8 +6,14 @@ import pandas as pd
 from projetos_auxiliares.reader import ProcessadorETL
 import sqlite3
 from urllib.parse import quote
+from sqlalchemy import create_engine
 
 app = Flask(__name__)
+URL_BANCO = os.getenv("DATABASE_URL")
+
+if not URL_BANCO:
+    raise ValueError("A variável de ambiente DATABASE_URL não foi configurada!")
+engine = create_engine(URL_BANCO)
 
 class GerenciadorSistema:
     """Classe responsável por encapsular as regras de negócio de Whatsapp e registros básicos"""
@@ -148,7 +154,7 @@ def upload_etl():
         if sucesso_carga:
             df_limpo = pd.DataFrame(dados_limpos)
             df_limpo.columns = [str(c).upper().strip() for c in df_limpo.columns]
-            df_limpo.to_csv("banco_local.csv", index=False)
+            df_limpo.to_sql("vendas", con=engine, if_exists="replace", index=False)
 
             return jsonify({
                 "status": "sucesso",
