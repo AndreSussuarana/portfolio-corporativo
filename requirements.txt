@@ -3,3 +3,5 @@ pandas
 streamlit
 gunicorn
 openpyxl
+sqlalchemy
+psycopg2-binary
