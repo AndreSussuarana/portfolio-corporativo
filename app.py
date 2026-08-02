@@ -2,7 +2,14 @@ import streamlit as st
 import pandas as pd
 import pathlib
 from funcoes import processar_e_tipar_colunas, calcular_kpis_dinamicos
+import os
+from sqlalchemy import create_engine
 
+URL_BANCO = os.getenv("DATABASE_URL")
+
+if not URL_BANCO:
+    raise ValueError("A variável de ambiente DATABASE_URL não foi configurada!")
+engine = create_engine(URL_BANCO)
 # --- CONFIGURAÇÃO DE ESTÉTICA E TEMA ---
 st.set_page_config(
     page_title="SaaS Express Premium", 
@@ -138,15 +145,17 @@ with tab_dados:
                         
                         nova_linha = pd.DataFrame(dados_linha)
                         
-                        if ARQUIVO_BANCO.exists():
-                            df_dados_brutos = pd.read_csv(ARQUIVO_BANCO)
-                            df_final = pd.concat([df_dados_brutos, nova_linha], ignore_index=True)
-                        else:
-                            df_final = nova_linha
-                            
-                        df_final.to_csv(ARQUIVO_BANCO, index=False)
-                        status.update(label="⚡ Registro salvo localmente com sucesso!", state="complete", expanded=False)
-                    st.rerun()
+                        try:
+                            nova_linha.columns = [str(c).upper().strip() for c in nova_linha.columns]
+
+                            nova_linha.to_sql("vendas", con=engine, if_exists="append", index=False)
+
+                            status.update(label="⚡ Registro salvo no banco online com sucesso!", state="complete", expanded=False)
+                            st.success("Dados alocados na nuvem")
+                        except Exception as erro_banco:
+                            status.update(label="❌ Erro ao salvar no banco online!", state="error", expanded=True)
+                            st.error(f"Detalhes do erro: {erro_banco}")
+                        st.rerun()
         else:
             st.warning("Defina as colunas na barra lateral para liberar o formulário.")
 
