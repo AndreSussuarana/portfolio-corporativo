@@ -5,3 +5,4 @@ gunicorn
 openpyxl
 sqlalchemy
 psycopg2-binary
+matplotlib
