@@ -1,18 +1,17 @@
 /* ==========================================
-CONFIGURAÇÕES GERAIS
+CONFIGURAÇÕES GERAIS E RESETS (LIGHT MODE)
 ========================================== */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg-primary: #0f172a;
-  --bg-card: #1e293b;
-  --bg-card-hover: #243347;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --border-color: #334155;
-  --accent-green: #10b981;
-  --accent-purple: #a855f7;
-  --accent-blue: #3b82f6;
+  --bg-primary: #f8fafc;        /* Fundo suave e limpo */
+  --bg-card: #ffffff;           /* Cards em branco puro */
+  --text-main: #0f172a;         /* Texto principal bem escuro (Alto contraste) */
+  --text-muted: #475569;        /* Texto secundário nítido */
+  --border-color: #e2e8f0;      /* Bordas elegantes */
+  --accent-green: #059669;      /* Verde WhatsApp vibrante */
+  --accent-purple: #7c3aed;     /* Roxo ETL chamativo */
+  --accent-blue: #2563eb;       /* Azul tecnologia */
 }
 
 * {
@@ -28,24 +27,24 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Evita esticar verticalmente */
+  align-items: flex-start;      /* Elimina o espaço vazio da sidebar */
   padding: 30px 20px;
 }
 
 /* ==========================================
-LAYOUT DO PORTFÓLIO (GRID CORRIGIDO)
+LAYOUT DO PORTFÓLIO (GRID)
 ========================================== */
 .portfolio-wrapper {
   display: grid;
   grid-template-columns: 360px 1fr;
   gap: 25px;
-  align-items: start; /* MÁGICA: Elimina o espaço vazio da sidebar stritch */
+  align-items: start;           /* MÁGICA: Ajusta a altura real dos elementos */
   max-width: 1200px;
   width: 100%;
 }
 
 /* ==========================================
-SIDEBAR DA ESQUERDA & CARDS (DARK MODE UNIFICADO)
+CARDS E SIDEBAR (EFEITO ELEVAÇÃO)
 ========================================== */
 .sidebar-profile, 
 .action-card {
@@ -53,14 +52,14 @@ SIDEBAR DA ESQUERDA & CARDS (DARK MODE UNIFICADO)
   border: 1px solid var(--border-color) !important;
   border-radius: 16px;
   padding: 28px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  transition: border-color 0.3s ease, transform 0.3s ease;
-  color: var(--text-main) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Sombra leve e refinada */
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .action-card:hover {
-  border-color: #475569 !important;
+  border-color: var(--accent-blue) !important;
   transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
 }
 
 .sidebar-profile {
@@ -72,18 +71,18 @@ SIDEBAR DA ESQUERDA & CARDS (DARK MODE UNIFICADO)
   text-align: center;
 }
 
-/* Avatar Moderno */
+/* Avatar com Brilho Gradiente */
 .avatar-container {
   position: relative;
   width: 85px;
   height: 85px;
-  background: linear-gradient(135deg, #334155 0%, #475569 100%);
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto 15px auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
 }
 
 .avatar-text {
@@ -99,8 +98,8 @@ SIDEBAR DA ESQUERDA & CARDS (DARK MODE UNIFICADO)
   right: 3px;
   width: 14px;
   height: 14px;
-  background-color: var(--accent-green);
-  border: 2.5px solid var(--bg-card);
+  background-color: #10b981;
+  border: 2.5px solid #ffffff;
   border-radius: 50%;
   animation: pulse 2s infinite;
 }
@@ -111,13 +110,16 @@ SIDEBAR DA ESQUERDA & CARDS (DARK MODE UNIFICADO)
   100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
-/* TEXTOS E TIPOGRAFIA (CORRIGIDO PARA MODO ESCURO) */
+/* ==========================================
+TIPOGRAFIA DE ALTO CONTRASTE
+========================================== */
 h1, h2, h3, h4, 
 .profile-name, 
 .card-header h2, 
 .service-title, 
 .skills-section h3 {
   color: var(--text-main) !important;
+  font-weight: 700;
 }
 
 p, span, li, 
@@ -142,7 +144,7 @@ p, span, li,
   margin: 20px 0;
 }
 
-/* Redes Sociais com SVG */
+/* Redes Sociais */
 .social-links {
   display: flex;
   justify-content: center;
@@ -154,13 +156,13 @@ p, span, li,
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: var(--bg-primary);
-  color: var(--text-muted);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background-color: #f1f5f9;
+  color: #334155;
   border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .social-icon svg {
@@ -170,19 +172,19 @@ p, span, li,
 }
 
 .social-icon:hover {
-  background-color: var(--accent-blue);
+  background-color: var(--text-main);
   color: #ffffff;
-  border-color: var(--accent-blue);
+  border-color: var(--text-main);
   transform: translateY(-2px);
 }
 
 /* Botão CV */
 .btn-cv {
-  background-color: var(--bg-primary);
+  background-color: #f1f5f9;
   color: var(--text-main);
   border: 1px solid var(--border-color);
   width: 100%;
-  padding: 10px 16px;
+  padding: 11px 16px;
   font-size: 13px;
   font-weight: 700;
   border-radius: 8px;
@@ -190,31 +192,29 @@ p, span, li,
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   text-decoration: none;
 }
 
 .btn-cv svg { width: 16px; height: 16px; fill: currentColor; }
 
 .btn-cv:hover {
-  background-color: var(--accent-blue);
+  background-color: var(--text-main);
   color: #ffffff;
-  border-color: var(--accent-blue);
-  transform: translateY(-1px);
+  border-color: var(--text-main);
 }
 
 /* Seção de Skills */
 .skills-section h3 {
-  font-size: 13px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 12px;
-  font-weight: bold;
 }
 
 .skill-category {
   font-size: 11px;
-  color: var(--text-muted);
+  color: #64748b;
   font-weight: 700;
   margin-bottom: 6px;
   text-transform: uppercase;
@@ -227,8 +227,8 @@ p, span, li,
 }
 
 .skill-badge {
-  background-color: var(--bg-primary);
-  color: #cbd5e1;
+  background-color: #f1f5f9;
+  color: #334155;
   border: 1px solid var(--border-color);
   padding: 6px 12px;
   border-radius: 8px;
@@ -242,12 +242,11 @@ p, span, li,
   background-color: var(--accent-blue);
   color: #ffffff;
   border-color: var(--accent-blue);
-  transform: scale(1.03);
 }
 
 .tech-info-box {
-  background-color: var(--bg-primary);
-  border: 1px dashed var(--border-color);
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
   border-radius: 10px;
   padding: 14px;
   margin-top: 18px;
@@ -284,7 +283,7 @@ LADO DIREITO: CARTÕES DE AÇÕES
   width: 42px;
   height: 42px;
   border-radius: 10px;
-  background-color: var(--bg-primary);
+  background-color: #f1f5f9;
   border: 1px solid var(--border-color);
 }
 
@@ -309,36 +308,19 @@ LADO DIREITO: CARTÕES DE AÇÕES
 
 .input-group input,
 .file-input {
-  background-color: var(--bg-primary) !important;
-  border: 1px solid var(--border-color) !important;
+  background-color: #ffffff !important;
+  border: 1.5px solid var(--border-color) !important;
   color: var(--text-main) !important;
   border-radius: 8px;
   padding: 12px 16px;
   width: 100%;
+  font-size: 14px;
 }
 
 .input-group input:focus {
   border-color: var(--accent-green) !important;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
   outline: none;
-}
-
-/* Grid de Serviços */
-.services-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.service-item {
-  border-left: 2px solid var(--border-color);
-  padding-left: 15px;
-  transition: all 0.2s ease;
-}
-
-.service-item:hover {
-  border-color: var(--accent-blue);
-  padding-left: 18px;
 }
 
 /* Botões do Sistema */
@@ -362,7 +344,8 @@ LADO DIREITO: CARTÕES DE AÇÕES
 }
 
 .btn-whatsapp:hover {
-  background-color: #059669;
+  background-color: #047857;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
 }
 
 .btn-etl {
@@ -371,7 +354,8 @@ LADO DIREITO: CARTÕES DE AÇÕES
 }
 
 .btn-etl:hover {
-  background-color: #9333ea;
+  background-color: #6d28d9;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
 }
 
 /* Lista de Arquitetura do Site */
@@ -401,7 +385,6 @@ LADO DIREITO: CARTÕES DE AÇÕES
   border-radius: 12px !important;
   overflow: hidden;
   border: 1px solid var(--border-color) !important;
-  background: var(--bg-primary) !important;
 }
 
 /* ==========================================
