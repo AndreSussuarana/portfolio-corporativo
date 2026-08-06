@@ -1,12 +1,21 @@
 /* ==========================================
 CONFIGURAÇÕES GERAIS E RESETS
 ========================================== */
-
+:root {
+    --bg-primary: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #243347;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --acent-green: #10b981;
+    --acent-purple: #a855f7;
+}
  * {
 margin: 0;
 padding: 0;
 box-sizing: border-box;
-font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
@@ -26,9 +35,8 @@ LAYOUT DO PORTFÓLIO (GRID BIDIRECIONAL)
 display: grid;
 grid-template-columns: 380px 1fr;
 gap: 25px;
-max-width: 1050px;
-width: 100%;
-margin: auto;
+align-items: start;
+max-width: 1200px;
 }
 
 /* ==========================================
