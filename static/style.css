@@ -1,6 +1,8 @@
 /* ==========================================
 CONFIGURAÇÕES GERAIS E RESETS
 ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+
 :root {
     --bg-primary: #0f172a;
     --bg-card: #1e293b;
@@ -19,13 +21,13 @@ font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-color: #2d3748;
-min-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-padding: 20px;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
 }
 
 /* ==========================================
@@ -95,17 +97,12 @@ animation: pulse 2s infinite;
 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-.profile-name {
-font-size: 24px;
-color: #1a202c;
-font-weight: 700;
+.profile-name, .card-header h2 {
+  color: var(--text-main);
 }
 
-.profile-tagline {
-font-size: 14px;
-color: #4a5568;
-margin-top: 4px;
-font-weight: 600;
+.profile-bio, .action-card p, .profile-tagline {
+  color: var(--text-muted);
 }
 
 /* Redes Sociais com SVG */
@@ -215,19 +212,22 @@ gap: 6px;
 }
 
 .skill-badge {
-background-color: #f7fafc;
-color: #2d3748;
-border: 1px solid #e2e8f0;
-padding: 5px 11px;
-border-radius: 12px;
-font-size: 11px;
-font-weight: 600;
-transition: all 0.2s ease;
+  background-color: #0f172a;
+  color: #cbd5e1;
+  border: 1px solid var(--border-color);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
-.skill-badge:hover {
-background-color: #e2e8f0;
-transform: scale(1.05);
+.skill-badge:hover, 
+.skill-badge.active-badge {
+  background-color: var(--accent-blue);
+  color: #ffffff;
+  border-color: var(--accent-blue);
+  transform: scale(1.03);
 }
 
 /* Novo estilo para o Badge ativo após o clique */
@@ -252,18 +252,11 @@ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
 /* Nova caixa de utilidades abaixo das tags */
 .tech-info-box {
-background-color: #f7fafc;
-border: 1.5px dashed #cbd5e0;
-border-radius: 10px;
-padding: 14px;
-margin-top: 18px;
-transition: opacity 0.2s ease, transform 0.2s ease;
-opacity: 1;
-transform: translateY(0);
-min-height: 68px;
-display: flex;
-flex-direction: column;
-justify-content: center;
+  background-color: #0f172a;
+  border: 1px dashed var(--border-color);
+  border-radius: 10px;
+  padding: 14px;
+  margin-top: 18px;
 }
 
 .tech-info-placeholder {
@@ -283,17 +276,18 @@ flex-direction: column;
 gap: 20px;
 }
 
-.action-card {
-background: #ffffff;
-border-radius: 16px;
-padding: 30px;
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-border: 1px solid rgba(255, 255, 255, 0.8);
-transition: transform 0.3s ease;
+.sidebar-profile, .action-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
 .action-card:hover {
-transform: translateY(-2px);
+  border-color: #475569;
+  transform: translateY(-2px);
 }
 
 .card-header {
@@ -355,19 +349,18 @@ gap: 10px;
 flex: 1;
 }
 
-.input-group input {
-width: 100%;
-padding: 14px 16px;
-border: 1.5px solid #cbd5e0;
-border-radius: 8px;
-font-size: 14px;
-outline: none;
-transition: all 0.3s ease;
+.input-group input,
+.file-input {
+background-color: #0f172a !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-main) !important;
+  border-radius: 8px;
+  padding: 12px 16px;
 }
 
 .input-group input:focus {
-border-color: #25d366;
-box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.15);
+  border-color: var(--accent-green) !important;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
 }
 /* Feedback visual para campos inválidos (casado com o pattern do HTML) */
 .input-group input:focus:invalid {
@@ -431,21 +424,13 @@ text-decoration: none;
 }
 
 .btn-whatsapp {
-background-color: #25d366;
-color: #ffffff;
-border: none;
-padding: 14px 24px;
-border-radius: 8px;
-font-size: 14px;
-font-weight: 700;
-cursor: pointer;
-transition: all 0.3s ease;
+  background-color: var(--accent-green);
+  color: #ffffff;
+  font-weight: 600;
 }
 
 .btn-whatsapp:hover {
-background-color: #128c7e;
-transform: translateY(-1px);
-box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  background-color: #059669;
 }
 
 /* Lista de Arquitetura do Site */
@@ -484,11 +469,6 @@ ESTILOS ESPECÍFICOS DO CARD ETL
     border-left: 4px solid #805ad5; /* Uma borda lateral sutil para destacar a área de dados */
 }
 
-.file-input {
-    cursor: pointer;
-    background-color: #f7fafc;
-    border: 1.5px dashed #cbd5e0 !important; /* Estilo tracejado para indicar drop/upload zone */
-}
 
 .file-input:hover {
     border-color: #805ad5 !important;
@@ -496,15 +476,13 @@ ESTILOS ESPECÍFICOS DO CARD ETL
 }
 
 .btn-etl {
-    background-color: #805ad5;
-    color: #ffffff;
-    transition: all 0.3s ease;
+  background-color: var(--accent-purple);
+  color: #ffffff;
+  font-weight: 600;
 }
 
 .btn-etl:hover {
-    background-color: #6b46c1;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(128, 90, 213, 0.3);
+  background-color: #9333ea;
 }
 
 /* Garante que o input de arquivo e o botão quebrem linha bonitinho no mobile */
@@ -670,6 +648,13 @@ color: #718096;
 padding: 20px !important;
 }
 
+.streamlit-dashboard-card div {
+  border-radius: 12px !important;
+  overflow: hidden;
+  border: 1px solid var(--border-color) !important;
+  background: #0f172a !important;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+}
 
 
 /* ==========================================
@@ -681,9 +666,6 @@ MEDIA QUERIES (RESPONSIVIDADE)
         padding: 10px;
     }
 
-    .sidebar-profile {
-        width: 100%;
-    }
 
     /* Centraliza o comportamento de todos os formulários flex do site no mobile */
     .interactive-form {
