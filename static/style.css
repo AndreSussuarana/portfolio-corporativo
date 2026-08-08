@@ -1,24 +1,24 @@
 /* ==========================================
-CONFIGURAÇÕES GERAIS E RESETS (LIGHT MODE)
+CONFIGURAÇÕES GERAIS E RESETS (LIGHT MODE VIBRANTE)
 ========================================== */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
 :root {
-  --bg-primary: #f8fafc;        /* Fundo suave e limpo */
-  --bg-card: #ffffff;           /* Cards em branco puro */
-  --text-main: #0f172a;         /* Texto principal bem escuro (Alto contraste) */
-  --text-muted: #475569;        /* Texto secundário nítido */
-  --border-color: #e2e8f0;      /* Bordas elegantes */
-  --accent-green: #059669;      /* Verde WhatsApp vibrante */
-  --accent-purple: #7c3aed;     /* Roxo ETL chamativo */
-  --accent-blue: #2563eb;       /* Azul tecnologia */
+  --bg-primary: #f1f5f9;        /* Fundo limpo de alto contraste */
+  --bg-card: #ffffff;           /* Cards em branco puro com bordas definidas */
+  --text-main: #020617;         /* Preto profundo (nitidez total, sem embaçar) */
+  --text-muted: #334155;        /* Cinza escuro para leitura perfeita */
+  --border-color: #cbd5e1;      /* Borda nítida */
+  --accent-green: #00a884;     /* Verde WhatsApp bem vivo */
+  --accent-purple: #7c3aed;     /* Roxo ETL em alto destaque */
+  --accent-blue: #2563eb;       /* Azul tecnologia vibrante */
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
@@ -38,7 +38,7 @@ LAYOUT DO PORTFÓLIO (GRID)
   display: grid;
   grid-template-columns: 360px 1fr;
   gap: 25px;
-  align-items: start;           /* MÁGICA: Ajusta a altura real dos elementos */
+  align-items: start;           /* Ajusta altura exata dos elementos */
   max-width: 1200px;
   width: 100%;
 }
@@ -52,14 +52,14 @@ CARDS E SIDEBAR (EFEITO ELEVAÇÃO)
   border: 1px solid var(--border-color) !important;
   border-radius: 16px;
   padding: 28px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Sombra leve e refinada */
-  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.06);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .action-card:hover {
   border-color: var(--accent-blue) !important;
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.12);
 }
 
 .sidebar-profile {
@@ -71,24 +71,24 @@ CARDS E SIDEBAR (EFEITO ELEVAÇÃO)
   text-align: center;
 }
 
-/* Avatar com Brilho Gradiente */
+/* Avatar com Brilho */
 .avatar-container {
   position: relative;
   width: 85px;
   height: 85px;
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto 15px auto;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
 }
 
 .avatar-text {
   color: #ffffff;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 1px;
 }
 
@@ -111,7 +111,7 @@ CARDS E SIDEBAR (EFEITO ELEVAÇÃO)
 }
 
 /* ==========================================
-TIPOGRAFIA DE ALTO CONTRASTE
+TIPOGRAFIA DE ALTÍSSIMO CONTRASTE (SEM EMBAÇAR)
 ========================================== */
 h1, h2, h3, h4, 
 .profile-name, 
@@ -119,7 +119,8 @@ h1, h2, h3, h4,
 .service-title, 
 .skills-section h3 {
   color: var(--text-main) !important;
-  font-weight: 700;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em;
 }
 
 p, span, li, 
@@ -129,13 +130,15 @@ p, span, li,
 .service-item p, 
 .engine-list li {
   color: var(--text-muted) !important;
+  font-weight: 500;
 }
 
 .profile-bio {
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.6;
   text-align: justify;
   margin: 15px 0;
+  color: #1e293b !important;
 }
 
 .profile-divisor {
@@ -156,18 +159,18 @@ p, span, li,
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 10px;
-  background-color: #f1f5f9;
-  color: #334155;
+  background-color: #f8fafc;
+  color: #0f172a;
   border: 1px solid var(--border-color);
   transition: all 0.2s ease;
 }
 
 .social-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   fill: currentColor;
 }
 
@@ -180,11 +183,11 @@ p, span, li,
 
 /* Botão CV */
 .btn-cv {
-  background-color: #f1f5f9;
+  background-color: #f8fafc;
   color: var(--text-main);
-  border: 1px solid var(--border-color);
+  border: 1.5px solid var(--border-color);
   width: 100%;
-  padding: 11px 16px;
+  padding: 12px 16px;
   font-size: 13px;
   font-weight: 700;
   border-radius: 8px;
@@ -196,7 +199,7 @@ p, span, li,
   text-decoration: none;
 }
 
-.btn-cv svg { width: 16px; height: 16px; fill: currentColor; }
+.btn-cv svg { width: 18px; height: 18px; fill: currentColor; }
 
 .btn-cv:hover {
   background-color: var(--text-main);
@@ -204,7 +207,9 @@ p, span, li,
   border-color: var(--text-main);
 }
 
-/* Seção de Skills */
+/* ==========================================
+TAGS DE LINGUAGENS E TECNOLOGIAS (CORES VIVAS)
+========================================== */
 .skills-section h3 {
   font-size: 12px;
   text-transform: uppercase;
@@ -214,8 +219,8 @@ p, span, li,
 
 .skill-category {
   font-size: 11px;
-  color: #64748b;
-  font-weight: 700;
+  color: #475569;
+  font-weight: 800;
   margin-bottom: 6px;
   text-transform: uppercase;
 }
@@ -223,45 +228,60 @@ p, span, li,
 .skills-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
+/* Base das Badges */
 .skill-badge {
-  background-color: #f1f5f9;
-  color: #334155;
-  border: 1px solid var(--border-color);
+  background-color: #ffffff;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
   padding: 6px 12px;
   border-radius: 8px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .skill-badge:hover, 
 .skill-badge.active-badge {
   background-color: var(--accent-blue);
-  color: #ffffff;
-  border-color: var(--accent-blue);
+  color: #ffffff !important;
+  border-color: var(--accent-blue) !important;
+  transform: translateY(-1px);
 }
+
+/* Identificação colorida vibrante nas bordas das tags */
+.tech-python { border-left: 4px solid #3776AB !important; background-color: #f0f7ff; }
+.tech-csharp { border-left: 4px solid #178600 !important; background-color: #f0fdf4; }
+.tech-flask { border-left: 4px solid #000000 !important; background-color: #f8fafc; }
+.tech-sqlite { border-left: 4px solid #003B57 !important; background-color: #f0f9ff; }
+.tech-streamlit { border-left: 4px solid #FF4B4B !important; background-color: #fff5f5; }
+.tech-excel { border-left: 4px solid #107C41 !important; background-color: #f0fdf4; }
+.tech-html { border-left: 4px solid #E34F26 !important; background-color: #fff7ed; }
+.tech-css { border-left: 4px solid #1572B6 !important; background-color: #eff6ff; }
+.tech-git { border-left: 4px solid #F05032 !important; background-color: #fff7ed; }
 
 .tech-info-box {
   background-color: #f8fafc;
-  border: 1px dashed #cbd5e1;
+  border: 1.5px dashed #94a3b8;
   border-radius: 10px;
   padding: 14px;
   margin-top: 18px;
 }
 
 .tech-info-placeholder {
-  font-size: 12px;
-  color: var(--text-muted);
+  font-size: 12.5px;
+  color: #475569;
   text-align: center;
   margin: 0;
   font-style: italic;
+  font-weight: 600;
 }
 
 /* ==========================================
-LADO DIREITO: CARTÕES DE AÇÕES
+LADO DIREITO: CARTÕES E BOTÕES DE AÇÃO VIBRANTES
 ========================================== */
 .content-actions {
   display: flex;
@@ -280,21 +300,30 @@ LADO DIREITO: CARTÕES DE AÇÕES
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   background-color: #f1f5f9;
   border: 1px solid var(--border-color);
 }
 
 .icon-wrapper svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 
-.green-glow svg { color: var(--accent-green); }
-.purple-glow svg { color: var(--accent-purple); }
-.blue-glow svg { color: var(--accent-blue); }
+/* Brilhos Coloridos dos Ícones */
+.green-glow { background-color: #dcfce7 !important; }
+.green-glow svg { color: #15803d !important; }
+
+.purple-glow { background-color: #f3e8ff !important; }
+.purple-glow svg { color: #7e22ce !important; }
+
+.blue-glow { background-color: #dbeafe !important; }
+.blue-glow svg { color: #1d4ed8 !important; }
+
+.dark-glow { background-color: #f1f5f9 !important; }
+.dark-glow svg { color: #0f172a !important; }
 
 /* Formulário Interativo */
 .interactive-form {
@@ -309,82 +338,108 @@ LADO DIREITO: CARTÕES DE AÇÕES
 .input-group input,
 .file-input {
   background-color: #ffffff !important;
-  border: 1.5px solid var(--border-color) !important;
-  color: var(--text-main) !important;
+  border: 1.5px solid #94a3b8 !important;
+  color: #0f172a !important;
   border-radius: 8px;
   padding: 12px 16px;
   width: 100%;
   font-size: 14px;
+  font-weight: 600;
 }
 
 .input-group input:focus {
   border-color: var(--accent-green) !important;
-  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+  box-shadow: 0 0 0 3px rgba(0, 168, 132, 0.2);
   outline: none;
 }
 
-/* Botões do Sistema */
+/* BOTÕES PRINCIPAIS VIBRANTES */
 .btn {
   padding: 14px 24px;
   border-radius: 8px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  letter-spacing: 0.3px;
 }
 
+/* WhatsApp: Verde Chamativo */
 .btn-whatsapp {
-  background-color: var(--accent-green);
-  color: #ffffff;
+  background-color: #00a884 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 168, 132, 0.3);
 }
 
 .btn-whatsapp:hover {
-  background-color: #047857;
-  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+  background-color: #008f70 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 168, 132, 0.4);
 }
 
+/* ETL: Roxo Vivo */
 .btn-etl {
-  background-color: var(--accent-purple);
-  color: #ffffff;
+  background-color: #7c3aed !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
 }
 
 .btn-etl:hover {
-  background-color: #6d28d9;
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+  background-color: #6d28d9 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
 }
 
-/* Lista de Arquitetura do Site */
+/* Streamlit / Botões Primários */
+.btn-streamlit, 
+.btn-primary {
+  background-color: #ff4b4b !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(255, 75, 75, 0.3);
+}
+
+.btn-streamlit:hover, 
+.btn-primary:hover {
+  background-color: #e03e3e !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(255, 75, 75, 0.4);
+}
+
+/* Moldura do Iframe Streamlit */
+.streamlit-dashboard-card div {
+  border-radius: 12px !important;
+  overflow: hidden;
+  border: 2px solid #cbd5e1 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Lista de Arquitetura */
 .engine-list {
   list-style: none;
 }
 
 .engine-list li {
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.6;
   margin-bottom: 12px;
-  padding-left: 20px;
+  padding-left: 22px;
   position: relative;
+  color: #334155 !important;
 }
 
 .engine-list li::before {
   content: "•";
-  color: var(--accent-blue);
-  font-size: 20px;
+  color: #2563eb;
+  font-size: 24px;
   position: absolute;
   left: 0;
-  top: -2px;
-  font-weight: bold;
-}
-
-.streamlit-dashboard-card div {
-  border-radius: 12px !important;
-  overflow: hidden;
-  border: 1px solid var(--border-color) !important;
+  top: -4px;
+  font-weight: 800;
 }
 
 /* ==========================================
@@ -401,7 +456,8 @@ RESPONSIVIDADE (MOBILE)
   }
 
   .btn-whatsapp,
-  .btn-etl {
+  .btn-etl,
+  .btn-streamlit {
     width: 100%;
   }
 }
